@@ -11,11 +11,11 @@ func Blink(raspi *raspi.Adaptor, ledPin string, buttonPin string) *gobot.Robot {
 	button := gpio.NewButtonDriver(raspi, buttonPin)
 	work := func() {
 		button.On(gpio.ButtonRelease, func(data interface{}) {
-			led.On()
+			led.Toggle()
 		})
-
 		button.On(gpio.ButtonPush, func(data interface{}) {
-			led.Off()
+
+			led.Toggle()
 		})
 	}
 	return gobot.NewRobot("buttonBot",
